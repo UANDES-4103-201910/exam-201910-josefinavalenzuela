@@ -10,6 +10,42 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-inverse" role="navigation">
+
+      <div class="navbar-header">
+        <a class="brand-logo left" href="http://localhost:3000">Z-Mobile</a>
+
+        <ul class='brand-logo right'>
+          <% if user_signed_in? %>
+                <li><a href="http://localhost:3000/shopping_carts">Bag</a></li>
+                <li><a href= <%= "http://localhost:3000/users/" + current_user[:id].to_s %>> Welcome <%=current_user.first_name %></a><li>
+
+                <li><a style="color:white"> <%= link_to('LOGOUT', destroy_user_session_path, method: :delete) %> </a><li>
+
+              <% else %>
+                <li><a class="brand-logo right" style="color:white">
+                <%= link_to('LOGIN', new_user_session_path) %> 
+                </a><li>
+
+              <% end %>
+        </ul>
+      </div>
+
+
+    </nav>
+    <nav id="subnav" class="navbar navbar-default" role="navigation">
+      <ul class="nav navbar-nav">
+         <li><a href="http://localhost:3000/products">Products</a></li>
+
+
+      </ul>
+    </nav>
     <%= yield %>
+    <br><br><br>
+    <footer>
+      <nav class="navbar navbar-inverse" role="navigation">
+        Call number: +569425019 | Address: Monseñor alvaro del portillo, Las Condes, Chile
+      </nav>
+    </footer>
   </body>
 </html>

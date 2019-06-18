@@ -1,0 +1,32 @@
+<h1>Receip</h1>
+<% total = 0 %>
+<% bag = [] %>
+<% for s in ShoppingBag.all %>
+	<% bag << s %>
+<% end %>
+
+
+<% ShoppingBag.destroy_all %>
+<table>
+  <tr>
+    <th>Brand</th>
+    <th>Model</th>
+    <th>Price</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+ 
+  <% for sc in bag %>
+    <tr>
+      <% total += Product.find(sc.product_id).price %>
+
+
+      <td><%= Product.find(sc.product_id).brand%></td>
+      <td><%= Product.find(sc.product_id).model %></td>
+      <td><%= Product.find(sc.product_id).price %></td>
+
+  <% end %>
+</table>
+
+<h3> Total: <%=total%></h3>
